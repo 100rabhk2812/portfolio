@@ -320,7 +320,7 @@
 
 .side-nav {
   position: fixed;
-  right: 2rem;
+  right: 1rem;
   top: 50%;
   transform: translateY(-50%) !important;
   z-index: 1000;
@@ -681,7 +681,7 @@
   }
 
   .side-nav {
-    bottom: 2rem;
+    bottom: 1rem;
     right: 15%;
     top: auto;
     transform: translateX(8%) !important;
@@ -719,7 +719,7 @@
 
 @media (max-width: 425px) {
   .side-nav {
-    bottom: 2rem;
+    bottom: 1rem;
     right: 6%;
     top: auto;
     transform: translateX(3%) !important;
@@ -740,5 +740,23 @@
   }
   .action-buttons button {
     padding: 1rem 1rem;
+  }
+}
+@media (max-width: 375px) {
+  .profile-section {
+    display: block;
+  }
+  .profile-image {
+    margin-bottom: 25px;
+  }
+  .social-links-portfolio a {
+    padding: 8px;
+  }
+  .action-buttons button {
+    padding: 10px 10px;
+    font-size: 15px;
+  }
+  .nav-item {
+    padding: 5px;
   }
 }

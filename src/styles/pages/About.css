@@ -51,16 +51,19 @@
   font-size: 1.5rem;
 }
 
-.experience-item, .education-item {
+.experience-item,
+.education-item {
   margin-bottom: 1.5rem;
 }
 
-.experience-item h4, .education-item h4 {
+.experience-item h4,
+.education-item h4 {
   color: white;
   margin-bottom: 0.5rem;
 }
 
-.experience-item p, .education-item p {
+.experience-item p,
+.education-item p {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   margin-bottom: 1rem;
@@ -79,7 +82,7 @@
 }
 
 .experience-item ul li::before {
-  content: '→';
+  content: "→";
   position: absolute;
   left: 0;
   color: var(--primary-color);
@@ -109,12 +112,12 @@
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-.light .experience-item h4, 
+.light .experience-item h4,
 .light .education-item h4 {
   color: #0f172a;
 }
 
-.light .experience-item p, 
+.light .experience-item p,
 .light .education-item p,
 .light .experience-item ul li {
   color: rgba(0, 0, 0, 0.7);
@@ -136,5 +139,11 @@
 
   .interests-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 375px) {
+  .interests-grid span {
+    font-size: 17px;
   }
 }
