@@ -1,29 +1,51 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import '../../styles/pages/Contact.css';
-import { socialLinks } from '../../data/portfolio'
-import { contactInfo } from '../../data/contact'
+import React from "react";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import { socialLinks } from "../../data/portfolio";
+import { contactInfo } from "../../data/contact";
+import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/pages/Contact.css";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+  const onSubmit = async (data) => {
+    try {
+      const url =
+        process.env.REACT_APP_BACKEND_URL ||
+        "http://localhost:5001/users/ContactSignup";
+      const response = await axios.post(url, data);
+      if (response.status === 201) {
+        // Show success toast
+        toast.success(
+          `${response.data.user.name} Your Message sent successfully!`,
+          {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          }
+        );
+      }
+    } catch (error) {
+      console.log("Error sending message:", error);
+    }
+    // Reset form
+    reset();
   };
 
   return (
     <div className="contact-container">
+      <ToastContainer theme="dark" />
       <div className="contact-content">
         <div className="contact-header">
           <h1>{contactInfo?.title}</h1>
@@ -34,9 +56,47 @@ const Contact = () => {
           <div className="contact-info">
             {contactInfo?.contactAddress?.map((item, index) => (
               <div key={index} className="info-card">
-                <div className="info-icon">{item.titleIcon}</div>
-                <h3>{item.title}</h3>
+                <div className="card-header">
+                  <div className="info-icon">{item.titleIcon}</div>
+                  <h3>{item.title}</h3>
+                </div>
                 <p>{item.subtitle}</p>
+                {item.title === "Phone" && (
+                  <div className="contact-actions">
+                    <motion.a
+                      href={`https://wa.me/${item.subtitle.replace(
+                        /[^0-9]/g,
+                        ""
+                      )}`}
+                      whileHover={{ scale: 1.1 }}
+                      className="contact-action-btn whatsapp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Chat on WhatsApp"
+                    >
+                      <div className="action-content">
+                        <i className="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                      </div>
+                    </motion.a>
+                    <motion.a
+                      href={`https://t.me/${item.subtitle.replace(
+                        /[^0-9]/g,
+                        ""
+                      )}`}
+                      whileHover={{ scale: 1.1 }}
+                      className="contact-action-btn telegram"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Chat on Telegram"
+                    >
+                      <div className="action-content">
+                        <i className="fab fa-telegram"></i>
+                        <span>Telegram</span>
+                      </div>
+                    </motion.a>
+                  </div>
+                )}
               </div>
             ))}
             <div className="social-links">
@@ -56,51 +116,102 @@ const Contact = () => {
           </div>
 
           <div className="contact-form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group">
                 <input
                   type="text"
-                  name="name"
                   placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
+                  {...register("name", {
+                    required: "Name is required",
+                    minLength: {
+                      value: 2,
+                      message: "Name must be at least 2 characters",
+                    },
+                  })}
+                  className={errors.name ? "error" : ""}
                 />
+                {errors.name && (
+                  <span className="error-message">{errors.name.message}</span>
+                )}
               </div>
 
               <div className="form-group">
                 <input
                   type="email"
-                  name="email"
                   placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  className={errors.email ? "error" : ""}
                 />
+                {errors.email && (
+                  <span className="error-message">{errors.email.message}</span>
+                )}
               </div>
 
               <div className="form-group">
                 <input
                   type="text"
-                  name="subject"
                   placeholder="Subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
+                  {...register("subject", {
+                    required: "Subject is required",
+                    minLength: {
+                      value: 4,
+                      message: "Subject must be at least 4 characters",
+                    },
+                  })}
+                  className={errors.subject ? "error" : ""}
                 />
+                {errors.subject && (
+                  <span className="error-message">
+                    {errors.subject.message}
+                  </span>
+                )}
+              </div>
+              <div className="form-group">
+                <input
+                  type="number"
+                  placeholder="Phone"
+                  {...register("phone", {
+                    required: "Phone No. is required",
+                    minLength: {
+                      value: 10,
+                      message: "Phone Number must be at least 10 characters",
+                    },
+                  })}
+                  className={errors.phone ? "error" : ""}
+                />
+                {errors.phone && (
+                  <span className="error-message">{errors.phone.message}</span>
+                )}
               </div>
 
               <div className="form-group">
                 <textarea
-                  name="message"
                   placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
+                  {...register("message", {
+                    required: "Message is required",
+                    minLength: {
+                      value: 10,
+                      message: "Message must be at least 10 characters",
+                    },
+                  })}
+                  className={errors.message ? "error" : ""}
                 ></textarea>
+                {errors.message && (
+                  <span className="error-message">
+                    {errors.message.message}
+                  </span>
+                )}
               </div>
 
-              <button type="submit" className="submit-btn">Send Message</button>
+              <button type="submit" className="submit-btn">
+                Send Message
+              </button>
             </form>
           </div>
         </div>
