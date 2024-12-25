@@ -14,6 +14,7 @@ import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import { socialLinks, portfolioInfo } from "../data/portfolio";
+import ContactUser from "./pages/ContactUser";
 
 const pageVariants = {
   initial: {
