@@ -320,6 +320,19 @@ const AppContent = () => {
               </motion.div>
             }
           />
+          <Route
+            path="/get-contact"
+            element={
+              <motion.div
+                initial="initial"
+                animate="enter"
+                exit="exit"
+                variants={pageVariants}
+              >
+                <ContactUser />
+              </motion.div>
+            }
+          />
         </Routes>
       </AnimatePresence>
     </div>
