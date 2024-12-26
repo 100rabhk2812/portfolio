@@ -23,17 +23,14 @@ const Contact = () => {
       const response = await axios.post(url, data);
       if (response.status === 201) {
         // Show success toast
-        toast.success(
-          `${response.data.user.name} Your Message sent successfully!`,
-          {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          }
-        );
+        toast.success(`Your Message sent successfully!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       }
     } catch (error) {
       console.log("Error sending message:", error);
