@@ -20,7 +20,7 @@ const Contact = () => {
     try {
       const url =
         process.env.REACT_APP_BACKEND_URL ||
-        "http://localhost:5001/users/ContactSignup";
+        "https://clever-bublanina.netlify.app/.netlify/functions/api/users/ContactSignup";
       const response = await axios.post(url, data);
       if (response.status === 201) {
         // Show success toast

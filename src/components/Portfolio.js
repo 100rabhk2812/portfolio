@@ -15,6 +15,7 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import { socialLinks, portfolioInfo } from "../data/portfolio";
 import ContactUser from "./pages/ContactUser";
+import NotFound from "./NotFound";
 
 const pageVariants = {
   initial: {
@@ -334,6 +335,7 @@ const AppContent = () => {
               </motion.div>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
     </div>
