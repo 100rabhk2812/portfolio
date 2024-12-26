@@ -11,7 +11,6 @@ function ContactUser() {
       try {
         // Try to get URL from environment variable, fallback to direct URL if not available
         const baseUrl =
-          process.env.REACT_APP_BACKEND_URL_FETCH_DATA ||
           "https://clever-bublanina.netlify.app/.netlify/functions/api/users/ContactGet";
 
         const response = await axios.get(baseUrl);

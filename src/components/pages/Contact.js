@@ -19,7 +19,6 @@ const Contact = () => {
   const onSubmit = async (data) => {
     try {
       const url =
-        process.env.REACT_APP_BACKEND_URL ||
         "https://clever-bublanina.netlify.app/.netlify/functions/api/users/ContactSignup";
       const response = await axios.post(url, data);
       if (response.status === 201) {
