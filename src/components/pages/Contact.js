@@ -80,9 +80,7 @@ const Contact = () => {
                       </div>
                     </motion.a>
                     <motion.a
-                      href={`https://t.me/Saurabhk2812,
-                        ""
-                      )}`}
+                      href={`https://t.me/Saurabhk2812`}
                       whileHover={{ scale: 1.1 }}
                       className="contact-action-btn telegram"
                       target="_blank"
