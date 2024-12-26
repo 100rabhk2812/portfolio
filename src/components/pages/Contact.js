@@ -80,8 +80,7 @@ const Contact = () => {
                       </div>
                     </motion.a>
                     <motion.a
-                      href={`https://t.me/${item.subtitle.replace(
-                        /[^0-9]/g,
+                      href={`https://t.me/Saurabhk2812,
                         ""
                       )}`}
                       whileHover={{ scale: 1.1 }}
