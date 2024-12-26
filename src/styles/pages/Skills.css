@@ -41,9 +41,14 @@
 }
 
 .skill-category h2 {
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
   margin-bottom: 2rem;
   font-size: 1.5rem;
+  background: linear-gradient(180deg, #fff, var(--primary-color));
+  /* margin-bottom: 1rem;
+  font-size: 1.5rem; */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .skills-list {

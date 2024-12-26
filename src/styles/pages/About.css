@@ -46,9 +46,11 @@
 }
 
 .about-card h3 {
-  color: var(--primary-color);
+  background: linear-gradient(180deg, #fff, var(--primary-color));
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .experience-item,

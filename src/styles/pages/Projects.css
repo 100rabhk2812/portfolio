@@ -101,9 +101,14 @@
 }
 
 .project-info h3 {
-  color: white;
+  /* color: white; */
   margin-bottom: 1rem;
   font-size: 1.3rem;
+  background: linear-gradient(180deg, #fff, var(--primary-color));
+  /* margin-bottom: 1rem;
+    font-size: 1.5rem; */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .project-info p {

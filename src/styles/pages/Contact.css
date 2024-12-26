@@ -80,7 +80,12 @@
 .info-card h3 {
   margin: 0;
   font-size: 1.2rem;
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
+  background: linear-gradient(180deg, #fff, var(--primary-color));
+  /* margin-bottom: 1rem;
+    font-size: 1.5rem; */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .info-card p {
